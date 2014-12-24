@@ -1,0 +1,29 @@
+{
+    "ok": true,
+    "channel": {
+        "id": "C0001AAAA",
+        "name": "things",
+        "is_channel": true,
+        "created": 1419192834,
+        "creator": "U0000AAAA",
+        "is_archived": false,
+        "is_general": false,
+        "is_member": true,
+        "last_read": "0000000000.000000",
+        "latest": null,
+        "unread_count": 0,
+        "members": [
+            "U024LDF92"
+        ],
+        "topic": {
+            "value": "",
+            "creator": "",
+            "last_set": 0
+        },
+        "purpose": {
+            "value": "",
+            "creator": "",
+            "last_set": 0
+        }
+    }
+}

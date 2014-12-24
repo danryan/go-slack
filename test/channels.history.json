@@ -1,0 +1,28 @@
+{
+    "ok": true,
+    "messages": [
+        {
+            "user": "U0000AAAA",
+            "topic": "test topic",
+            "type": "message",
+            "subtype": "channel_topic",
+            "text": "<@U0000AAAA|dan> set the channel topic: test topic",
+            "ts": "1419192595.000023"
+        },
+        {
+            "text": "test",
+            "username": "bot",
+            "type": "message",
+            "subtype": "bot_message",
+            "ts": "1419192301.000022"
+        },
+        {
+            "text": "lolwat",
+            "username": "hal",
+            "type": "message",
+            "subtype": "bot_message",
+            "ts": "1419021177.000020"
+        }
+    ],
+    "has_more": true
+}

@@ -1,0 +1,35 @@
+{
+    "ok": true,
+    "channel": {
+        "id": "C0000AAAA",
+        "name": "general",
+        "is_channel": true,
+        "created": 1419103826,
+        "creator": "U0000AAAA",
+        "is_archived": false,
+        "is_general": true,
+        "is_member": true,
+        "last_read": "1419021182.000021",
+        "latest": {
+            "text": "test message",
+            "username": "hal",
+            "type": "message",
+            "subtype": "bot_message",
+            "ts": "1419021182.000021"
+        },
+        "unread_count": 0,
+        "members": [
+            "U0000AAAA"
+        ],
+        "topic": {
+            "value": "test topic",
+            "creator": "U0000AAAA",
+            "last_set": 1419192595
+        },
+        "purpose": {
+            "value": "The #general channel is for team-wide communication and announcements. All team members are in this channel.",
+            "creator": "",
+            "last_set": 0
+        }
+    }
+}
