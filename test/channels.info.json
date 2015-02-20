@@ -4,22 +4,24 @@
         "id": "C0000AAAA",
         "name": "general",
         "is_channel": true,
-        "created": 1419103826,
+        "created": 1387298891,
         "creator": "U0000AAAA",
         "is_archived": false,
         "is_general": true,
         "is_member": true,
-        "last_read": "1419021182.000021",
+        "last_read": "1419192595.000023",
         "latest": {
-            "text": "test message",
-            "username": "hal",
+            "user": "U0000AAAA",
+            "topic": "test topic",
             "type": "message",
-            "subtype": "bot_message",
-            "ts": "1419021182.000021"
+            "subtype": "channel_topic",
+            "text": "<@U0000AAAA|dan> set the channel topic: test topic",
+            "ts": "1419192595.000023"
         },
         "unread_count": 0,
         "members": [
-            "U0000AAAA"
+            "U0000AAAA",
+            "U0000BBBB"
         ],
         "topic": {
             "value": "test topic",

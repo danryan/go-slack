@@ -137,10 +137,31 @@ func cloneResponseBody(r *http.Response) (io.Reader, io.Reader, error) {
 	return buf1, buf2, nil
 }
 
+func setIfNil(i interface{}, o interface{}) error {
+	vi := reflect.ValueOf(i)
+	vo := reflect.ValueOf(o)
+
+	if vi.Kind() == reflect.Ptr && !vi.IsNil() {
+		return nil
+	}
+
+	if vi.Kind() != vo.Kind() {
+		return fmt.Errorf("cannot assign to type of %v with type %v", vi.Type(), vo.Type())
+	}
+
+	if vi.CanSet() {
+		vi.Set(vo)
+	}
+
+	return nil
+}
+
 // addOptions adds the parameters in opt as URL query parameters to s.
 // opt must be a struct whose fields may contain "url" tags.
-func addOptions(s string, opt interface{}) (string, error) {
-	v := reflect.ValueOf(opt)
+func addOptions(s string, opts interface{}) (string, error) {
+	values := make(url.Values)
+
+	v := reflect.ValueOf(opts)
 	if v.Kind() == reflect.Ptr && v.IsNil() {
 		return s, nil
 	}
@@ -150,43 +171,21 @@ func addOptions(s string, opt interface{}) (string, error) {
 		return s, err
 	}
 
-	qs, err := query.Values(opt)
+	qs, err := query.Values(opts)
 	if err != nil {
 		return s, err
 	}
-	u.RawQuery = u.RawQuery + `&` + qs.Encode()
+
+	for key, val := range qs {
+		values[key] = val
+	}
+
+	for key, val := range u.Query() {
+		values[key] = val
+	}
+
+	u.RawQuery = values.Encode()
+	// u.RawQuery = u.RawQuery + `&` + qs.Encode()
 
 	return u.String(), nil
-}
-
-type ErrorResponse struct {
-	Response *http.Response
-	Ok       bool   `json:"ok"`
-	Message  string `json:"error"`
-}
-
-func (r *ErrorResponse) Error() string {
-	return fmt.Sprintf("%v %v: %v", r.Response.Request.Method, r.Response.Request.URL.Path, r.Message)
-}
-
-func checkError(r io.Reader, res *http.Response) error {
-	v := &ErrorResponse{Response: res}
-
-	if err := json.NewDecoder(r).Decode(v); err != nil {
-		return err
-	}
-
-	if !v.Ok {
-		return v
-	}
-
-	return nil
-}
-
-func checkResponse(r *http.Response) error {
-	if c := r.StatusCode; 200 <= c && c <= 299 {
-		return nil
-	}
-
-	return &ErrorResponse{Response: r}
 }

@@ -25,6 +25,8 @@ var (
 	fixtureNames = []string{
 		"channels.list",
 		"channels.info",
+		"channels.history",
+		"channels.rename",
 	}
 )
 

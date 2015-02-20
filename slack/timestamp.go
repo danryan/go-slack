@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/davecgh/go-spew/spew"
 )
 
 // Timestamp is a custom time.Time type to convert Slack's use of seconds-since-epoch timestamps
@@ -17,7 +19,12 @@ func (t *Timestamp) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements the json decoder interface
 func (t *Timestamp) UnmarshalJSON(b []byte) error {
-	ts, err := strconv.Atoi(string(b))
+	spew.Dump(b)
+	_ts, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	ts, err := strconv.Atoi(_ts)
 	if err != nil {
 		return err
 	}

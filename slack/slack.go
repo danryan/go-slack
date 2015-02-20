@@ -14,6 +14,3 @@ func Error(err error) *ErrorResponse {
 
 	return nil
 }
-
-// +gen slice:"Where,Count"
-type Thing struct{}
